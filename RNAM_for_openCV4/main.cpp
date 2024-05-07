@@ -1,5 +1,6 @@
 #include "Header.h"
 //  lena512.bmp gray.jpg rnamc.jpg 10
+/*我是cyc*/
 
 int main(int argc, char** argv)//分别输入1.原灰度图 2.转灰度图文件名 3.解码后的文件名 4.EPSILON
 {
