@@ -30,3 +30,8 @@ INCLUDEPATH += E:\openCV4.7.0\opencv\opencv-build\install\include
 LIBS += E:\openCV4.7.0\opencv\opencv-build\install\x64\mingw\bin\libopencv_*.dll
 # 以上两行在开发时换上自己的路径,这里"libopencv_*.dll"代表bin文件夹下所有以libopencv_开头的ddl文件，找到bin文件夹路径后照抄最后的"libopencv_*.dll"即可
 }
+#ps:为方便起见，提交至github时应该删去上方路径，可以将自己的路径以注释形式写在下面，便于opencv库的快速导入
+
+#E:\openCV4.7.0\opencv\opencv-build\install\include
+#E:\openCV4.7.0\opencv\opencv-build\install\x64\mingw\bin\libopencv_*.dll
+#这是陈永川的路径
