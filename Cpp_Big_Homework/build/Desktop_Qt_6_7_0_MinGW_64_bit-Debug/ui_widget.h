@@ -42,7 +42,7 @@ public:
     QLineEdit *dataShowing_lineEdit_6;
     QPushButton *loadButton;
     QSlider *valueInput_horizontalSlider;
-    QPushButton *pushButton;
+    QPushButton *run_pushButton;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_3;
@@ -180,10 +180,10 @@ public:
         valueInput_horizontalSlider->setMaximum(30);
         valueInput_horizontalSlider->setPageStep(1);
         valueInput_horizontalSlider->setOrientation(Qt::Horizontal);
-        pushButton = new QPushButton(Widget);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(490, 520, 201, 41));
-        pushButton->setStyleSheet(QString::fromUtf8("font: 12pt \"Microsoft YaHei UI\";"));
+        run_pushButton = new QPushButton(Widget);
+        run_pushButton->setObjectName("run_pushButton");
+        run_pushButton->setGeometry(QRect(490, 520, 201, 41));
+        run_pushButton->setStyleSheet(QString::fromUtf8("font: 12pt \"Microsoft YaHei UI\";"));
         layoutWidget = new QWidget(Widget);
         layoutWidget->setObjectName("layoutWidget");
         layoutWidget->setGeometry(QRect(50, 390, 221, 131));
@@ -262,7 +262,7 @@ public:
         dataShowing_lineEdit_5->setText(QCoreApplication::translate("Widget", "BPP\345\200\274\357\274\232", nullptr));
         dataShowing_lineEdit_6->setText(QCoreApplication::translate("Widget", "CR\345\200\274\357\274\232", nullptr));
         loadButton->setText(QCoreApplication::translate("Widget", "\345\212\240\350\275\275", nullptr));
-        pushButton->setText(QCoreApplication::translate("Widget", "\346\211\247      \350\241\214      \347\256\227      \346\263\225", nullptr));
+        run_pushButton->setText(QCoreApplication::translate("Widget", "\346\211\247      \350\241\214      \347\256\227      \346\263\225", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

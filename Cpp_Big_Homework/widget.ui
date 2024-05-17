@@ -373,7 +373,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="run_pushButton">
    <property name="geometry">
     <rect>
      <x>490</x>
