@@ -43,14 +43,18 @@ public:
     QPushButton *loadButton;
     QSlider *valueInput_horizontalSlider;
     QPushButton *pushButton;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_2;
-    QLineEdit *lineEdit;
+    QLineEdit *valueInput_lineEdit;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QComboBox *comboBox;
+    QPushButton *clearButton;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *label_5;
 
     void setupUi(QWidget *Widget)
     {
@@ -171,32 +175,35 @@ public:
         loadButton->setMaximumSize(QSize(80, 30));
         valueInput_horizontalSlider = new QSlider(Widget);
         valueInput_horizontalSlider->setObjectName("valueInput_horizontalSlider");
-        valueInput_horizontalSlider->setGeometry(QRect(300, 440, 621, 21));
+        valueInput_horizontalSlider->setEnabled(true);
+        valueInput_horizontalSlider->setGeometry(QRect(290, 410, 621, 21));
+        valueInput_horizontalSlider->setMaximum(30);
+        valueInput_horizontalSlider->setPageStep(1);
         valueInput_horizontalSlider->setOrientation(Qt::Horizontal);
         pushButton = new QPushButton(Widget);
         pushButton->setObjectName("pushButton");
         pushButton->setGeometry(QRect(490, 520, 201, 41));
         pushButton->setStyleSheet(QString::fromUtf8("font: 12pt \"Microsoft YaHei UI\";"));
-        widget = new QWidget(Widget);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(60, 420, 221, 131));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(Widget);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(50, 390, 221, 131));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
         label_2->setMinimumSize(QSize(0, 3));
 
         horizontalLayout_3->addWidget(label_2);
 
-        lineEdit = new QLineEdit(widget);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setMinimumSize(QSize(100, 30));
-        lineEdit->setMaximumSize(QSize(100, 30));
+        valueInput_lineEdit = new QLineEdit(layoutWidget);
+        valueInput_lineEdit->setObjectName("valueInput_lineEdit");
+        valueInput_lineEdit->setMinimumSize(QSize(100, 30));
+        valueInput_lineEdit->setMaximumSize(QSize(100, 30));
 
-        horizontalLayout_3->addWidget(lineEdit);
+        horizontalLayout_3->addWidget(valueInput_lineEdit);
 
         horizontalLayout_3->setStretch(1, 2);
 
@@ -204,13 +211,13 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName("label");
         label->setMinimumSize(QSize(0, 30));
 
         horizontalLayout_2->addWidget(label);
 
-        comboBox = new QComboBox(widget);
+        comboBox = new QComboBox(layoutWidget);
         comboBox->setObjectName("comboBox");
         comboBox->setMinimumSize(QSize(101, 31));
         comboBox->setMaximumSize(QSize(100, 30));
@@ -220,6 +227,20 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_2);
 
+        clearButton = new QPushButton(Widget);
+        clearButton->setObjectName("clearButton");
+        clearButton->setGeometry(QRect(1010, 340, 80, 30));
+        clearButton->setMinimumSize(QSize(80, 30));
+        clearButton->setMaximumSize(QSize(80, 30));
+        label_3 = new QLabel(Widget);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(130, 10, 31, 16));
+        label_4 = new QLabel(Widget);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(430, 10, 51, 20));
+        label_5 = new QLabel(Widget);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(750, 10, 51, 20));
 
         retranslateUi(Widget);
 
@@ -249,8 +270,12 @@ public:
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">\350\276\223\345\205\245</span><img src=\"file:///C:/Users/\351\231\210\346\260\270\345\267\235/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png\" width=\"7\" height=\"21\" /><span style=\" font-weight:700;\">  \345\200\274\357\274\232</span></p></body></html>", nullptr));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">\350\276\223\345\205\245epsilon\345\200\274\357\274\232</span></p></body></html>", nullptr));
         label->setText(QCoreApplication::translate("Widget", "<html><head/><body><p><span style=\" font-weight:700;\">\351\200\211\346\213\251\344\275\240\347\232\204\347\256\227\346\263\225\357\274\232</span></p></body></html>", nullptr));
+        clearButton->setText(QCoreApplication::translate("Widget", "\346\270\205\347\251\272", nullptr));
+        label_3->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\216\237\345\233\276</p></body></html>", nullptr));
+        label_4->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\210\206\345\211\262\345\233\276</p></body></html>", nullptr));
+        label_5->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\216\213\347\274\251\345\233\276</p></body></html>", nullptr));
     } // retranslateUi
 
 };

@@ -17,7 +17,13 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+private slots:
+    void on_valueInput_horizontalSlider_valueChanged(int value);
+
+    void on_valueInput_lineEdit_returnPressed();//epsilon值输入框中回车按下
+
 private:
     Ui::Widget *ui;
+    int num = 0;//用于存储epsilon值输入框中的值
 };
 #endif // WIDGET_H
