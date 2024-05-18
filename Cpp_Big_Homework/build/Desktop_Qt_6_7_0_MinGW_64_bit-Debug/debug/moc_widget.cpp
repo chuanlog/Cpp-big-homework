@@ -106,7 +106,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->on_valueInput_horizontalSlider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 1: _t->on_valueInput_lineEdit_returnPressed(); break;
-        case 3: _t->on_run_pushButton_clicked(); break;
+        case 2: _t->on_run_pushButton_clicked(); break;
         default: ;
         }
     }
