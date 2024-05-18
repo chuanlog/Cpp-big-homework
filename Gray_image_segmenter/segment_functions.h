@@ -61,6 +61,7 @@ void fun(int epsilon, string address, int& time1, int& time2, int& num, double& 
     }
 }
 //以下两个函数用于将Mat转化为QPixmap
+//将Mat转化为QImage
 QImage MatToQImage(const cv::Mat& mat)
 {
     if (mat.type() == CV_8UC1)
@@ -77,11 +78,16 @@ QImage MatToQImage(const cv::Mat& mat)
         return QImage();
     }
 }
-
 // 将 QImage 转换为 QPixmap
 QPixmap MatToQPixmap(const cv::Mat& mat)
 {
     return QPixmap::fromImage(MatToQImage(mat));
 }
+
+
+
+//以下函数用于将QPixmap转为Mat
+
+
 
 #endif // SEGMENT_FUNCTIONS_H

@@ -10,6 +10,7 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    connect(ui->valueInput_horizontalSlider,SIGNAL(sliderReleased()),this,SLOT(on_run_pushButton_clicked()));
 }
 
 Widget::~Widget()
@@ -44,6 +45,13 @@ void Widget::on_valueInput_lineEdit_returnPressed()
 //执行算法按钮
 void Widget::on_run_pushButton_clicked()
 {
+    if(scaledPixmap.isNull())
+    {
+       QMessageBox::warning(nullptr, "warning", "未导入图片");
+        return;
+    }
+
+
     QFont f("YaHei",11);
     ui->state_showing_label->setFont(f);
 
@@ -144,5 +152,16 @@ void Widget::on_clearButton_clicked()
     ui->Image_display_label_1->clear();
     ui->Image_display_label_2->clear();
     ui->Image_display_label_3->clear();
+    ui->dataShowing_lineEdit_1->setText("解码压缩花费：");
+    ui->dataShowing_lineEdit_2->setText("还原图像耗时：");
+    ui->dataShowing_lineEdit_3->setText("块数：");
+    ui->dataShowing_lineEdit_4->setText("PSNR值：");
+    ui->dataShowing_lineEdit_5->setText("BPP值：");
+    ui->dataShowing_lineEdit_6->setText("CR值：");
+    num=0;
+    m1 = QPixmap();
+    m2 = QPixmap();
+    scaledPixmap=QPixmap();
+    imagePath1.clear();
 }
 
