@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 #include"Header_Diagonal_Priority.h"
 #include<QMessageBox>
+#include<QFileDialog>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -99,4 +100,16 @@ void fun(int epsilon, string address, int& time1, int& time2, int& num, double& 
 }
 
 
+
+
+void Widget::on_loadButton_clicked()
+{
+    //声明QString变量imagePath来接收图片的地址，这个地址是由用户自己上传的
+    QString imagePath = QFileDialog::getOpenFileName(this, "选择图片", "", "图片文件 (*.jpg *.jpeg *.png)");
+    if (!imagePath.isEmpty()) {
+        QPixmap pixmap(imagePath);
+        ui->Image_display_label_1->setPixmap(pixmap);
+        ui->Image_display_label_1->setScaledContents(true);        //在Image_display_label_1中显示，并且通过setScaledContents函数使其尺寸自适应
+    }
+}
 
