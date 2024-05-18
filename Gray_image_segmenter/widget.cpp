@@ -113,12 +113,14 @@ void Widget::on_run_pushButton_clicked()
 
 void Widget::on_loadButton_clicked()
 {
-    //声明QString变量imagePath来接收图片的地址，这个地址是由用户自己上传的
+    //定义QString变量imagePath1来接收图片的地址，这个地址是由用户自己上传的。请注意imagePath1是在头文件中已经声明的。
     imagePath1 = QFileDialog::getOpenFileName(this, "选择图片", "", "图片文件 (*.jpg *.jpeg *.png)");
     if (!imagePath1.isEmpty()) {
-        QPixmap pixmap(imagePath1);
-        ui->Image_display_label_1->setPixmap(pixmap);
+        QPixmap originalPixmap(imagePath1);
+        ui->Image_display_label_1->setPixmap(originalPixmap);
         ui->Image_display_label_1->setScaledContents(true);        //在Image_display_label_1中显示，并且通过setScaledContents函数使其尺寸自适应
+        int targetSize=300;
+        scaledPixmap=originalPixmap.scaled(targetSize,targetSize,Qt::KeepAspectRatio);
     }
 }
 
@@ -134,5 +136,13 @@ void Widget::on_saveButton_2_clicked()
 {
     QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.png *.jpg)"));
     m2.save(dir);
+}
+
+
+void Widget::on_clearButton_clicked()
+{
+    ui->Image_display_label_1->clear();
+    ui->Image_display_label_2->clear();
+    ui->Image_display_label_3->clear();
 }
 
