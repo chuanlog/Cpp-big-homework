@@ -1,6 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include"Header_Diagonal_Priority.h"
+#include"segment_functions.h"
 #include<QMessageBox>
 #include<QFileDialog>
 
@@ -40,74 +40,31 @@ void Widget::on_valueInput_lineEdit_returnPressed()
 //执行算法按钮
 void Widget::on_run_pushButton_clicked()
 {
-    QMessageBox::information(this,"information","test coding by 陈永川");
+    QString temp=ui->valueInput_lineEdit->text();
+    num=temp.toInt();
+    int Epsilon=num;
+    string adress=imagePath1.toStdString();
+    Mat img1,img2;
+    int time1,time2,num;
+    double psnr,bpp,cr;
+    fun(Epsilon,adress,time1,time2,num,psnr,bpp,cr,img1,img2);
+    QPixmap m1,m2;
+    m1=MatToQPixmap(img1);
+    m2=MatToQPixmap(img2);
+    ui->Image_display_label_2->setPixmap(m1);
+    ui->Image_display_label_2->setScaledContents(true);
+    ui->Image_display_label_3->setPixmap(m2);
+    ui->Image_display_label_3->setScaledContents(true);
 }
-//这是Diagonal_Priority算法的函数，传入参数为，epsilon值、原图地址值以及编解码时间，块数，PSNR，BPP,CR值的引用
-void fun(int epsilon, string address, int& time1, int& time2, int& num, double& psnr, double& bpp, double& cr, Mat& img1, Mat& img2)
-{
-    Mat img = imread(address);
-    if (!img.empty()) {
-        /*一，分割同类块及编码*/
-        int M = img.rows;
-        int N = img.cols;
-
-        Mat img_gray = img;
-        cvtColor(img, img_gray, CV_BGR2GRAY);
-        Mat markMatrix = Mat::zeros(M, N, CV_8UC1);
-        Mat R = Mat::zeros(M, N, CV_8UC1);
-
-        vector<Color> colorList;
-        vector<char> coordinateList;
-        int xigema = epsilon;
-        MyTimer mt;
-        mt.Start();
-        /*分块*/
-        RNAMCEncoding(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
-
-        /*矩阵编码*/
-        EnCode(R, M, N, coordinateList);
-        mt.End();
-
-        time1 = mt.costTime;
-        mt.Reset();
-
-        /*二，还原图像矩阵及图像*/
-        Mat T = Mat::zeros(M, N, CV_8UC1);
-
-        mt.Start();
-        Decode(T, M, N, coordinateList);
-        RNAMCDecoding(T, M, N, colorList, coordinateList);
-        mt.End();
-        time2 = mt.costTime;
-        mt.Reset();
-
-        num = colorList.size();
-        psnr = PSNR(img_gray, T, M, N);
-        bpp = BPP(colorList, M, N, coordinateList);
-        cr = 8.0 / bpp;
-
-        img1 = T;
-
-        /*分割图*/
-        Mat display(M, N, CV_8UC1, Scalar::all(255));
-        segmentDisplay(display, colorList);
-        img2 = display;
-        img.release();
-        img_gray.release();
-        display.release();
-        T.release();
-    }
-}
-
 
 
 
 void Widget::on_loadButton_clicked()
 {
     //声明QString变量imagePath来接收图片的地址，这个地址是由用户自己上传的
-    QString imagePath = QFileDialog::getOpenFileName(this, "选择图片", "", "图片文件 (*.jpg *.jpeg *.png)");
-    if (!imagePath.isEmpty()) {
-        QPixmap pixmap(imagePath);
+    imagePath1 = QFileDialog::getOpenFileName(this, "选择图片", "", "图片文件 (*.jpg *.jpeg *.png)");
+    if (!imagePath1.isEmpty()) {
+        QPixmap pixmap(imagePath1);
         ui->Image_display_label_1->setPixmap(pixmap);
         ui->Image_display_label_1->setScaledContents(true);        //在Image_display_label_1中显示，并且通过setScaledContents函数使其尺寸自适应
     }
