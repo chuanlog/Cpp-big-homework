@@ -55,6 +55,7 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
+    QLabel *state_showing_label;
 
     void setupUi(QWidget *Widget)
     {
@@ -241,6 +242,13 @@ public:
         label_5 = new QLabel(Widget);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(750, 10, 51, 20));
+        state_showing_label = new QLabel(Widget);
+        state_showing_label->setObjectName("state_showing_label");
+        state_showing_label->setGeometry(QRect(420, 450, 351, 31));
+        QFont font1;
+        font1.setPointSize(11);
+        state_showing_label->setFont(font1);
+        state_showing_label->setStyleSheet(QString::fromUtf8("border:1px solid rgb(0,0,0);"));
 
         retranslateUi(Widget);
 
@@ -276,6 +284,7 @@ public:
         label_3->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\216\237\345\233\276</p></body></html>", nullptr));
         label_4->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\210\206\345\211\262\345\233\276</p></body></html>", nullptr));
         label_5->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\216\213\347\274\251\345\233\276</p></body></html>", nullptr));
+        state_showing_label->setText(QCoreApplication::translate("Widget", "<html><head/><body><p><span style=\" font-size:18pt;\">\350\277\220\350\241\214\347\212\266\346\200\201\357\274\232</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

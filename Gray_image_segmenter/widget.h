@@ -30,5 +30,7 @@ private:
     Ui::Widget *ui;
     int num = 0;//用于存储epsilon值输入框中的值
     QString imagePath1;
+    QPixmap m1;//灰度图
+    QPixmap m2;//分割图
 };
 #endif // WIDGET_H
