@@ -26,6 +26,10 @@ private slots:
 
     void on_loadButton_clicked();
 
+    void on_saveButton_1_clicked();
+
+    void on_saveButton_2_clicked();
+
 private:
     Ui::Widget *ui;
     int num = 0;//用于存储epsilon值输入框中的值

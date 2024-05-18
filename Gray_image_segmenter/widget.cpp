@@ -122,3 +122,17 @@ void Widget::on_loadButton_clicked()
     }
 }
 
+
+void Widget::on_saveButton_1_clicked()
+{
+    QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.png *.jpg)"));
+    m1.save(dir);
+}
+
+
+void Widget::on_saveButton_2_clicked()
+{
+    QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.png *.jpg)"));
+    m2.save(dir);
+}
+
