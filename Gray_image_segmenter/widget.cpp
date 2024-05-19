@@ -115,6 +115,11 @@ void Widget::on_run_pushButton_clicked()
     tem+=QString::number(bpp);
     ui->dataShowing_lineEdit_6->setText(tem);
     tem.clear();
+
+    //把为显示而压缩为正方形的图片恢复为原来的尺寸
+    QPixmap original(imagePath1);
+    m1= OriginalSize(m1,original.width(),original.height());
+    m2= OriginalSize(m1,original.width(),original.height());
 }
 
 
@@ -127,8 +132,7 @@ void Widget::on_loadButton_clicked()
         QPixmap originalPixmap(imagePath1);
         ui->Image_display_label_1->setPixmap(originalPixmap);
         ui->Image_display_label_1->setScaledContents(true);        //在Image_display_label_1中显示，并且通过setScaledContents函数使其尺寸自适应
-        int targetSize=300;
-        scaledPixmap=originalPixmap.scaled(targetSize,targetSize,Qt::KeepAspectRatio);
+        scaledPixmap=makeSquarePixmap(originalPixmap);
     }
 }
 

@@ -3,6 +3,7 @@
 #include<QImage>
 #include<QPixmap>
 #include<Header_Diagonal_Priority.h>
+#include<QPainter>
 
 //这是Diagonal_Priority算法的函数，传入参数为，epsilon值、原图地址值以及编解码时间，块数，PSNR，BPP,CR值的引用
 void fun(int epsilon, Mat mat, int& time1, int& time2, int& num, double& psnr, double& bpp, double& cr, Mat& img1, Mat& img2)
@@ -106,6 +107,29 @@ Mat QPixmapToMat(QPixmap qpixmap)
         break;
     }
     return mat;
+}
+
+//此函数用于将非正方形的Qpixmap转化为正方形的Qpixmap,转化后边长为原来较长的一边
+QPixmap makeSquarePixmap(const QPixmap &srcPixmap) {
+    // 获取长方形 QPixmap 的宽和高
+    int width = srcPixmap.width();
+    int height = srcPixmap.height();
+
+    // 计算正方形的边长，取宽和高的较大值
+    int side = qMax(width, height);
+
+    // 将原始 QPixmap 缩放到正方形大小，保持长宽比
+    QPixmap scaledPixmap = srcPixmap.scaled(side, side, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+    return scaledPixmap;
+}
+
+//此函数用于恢复为原来的大小用于保存
+QPixmap OriginalSize(const QPixmap &squarePixmap, int originalWidth, int originalHeight) {
+    // 将正方形 QPixmap 缩放回原来的尺寸
+    QPixmap restoredPixmap = squarePixmap.scaled(originalWidth, originalHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+    return restoredPixmap;
 }
 
 
