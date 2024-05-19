@@ -65,12 +65,12 @@ void Widget::on_run_pushButton_clicked()
     QString temp=ui->valueInput_lineEdit->text();
     num=temp.toInt();
     int Epsilon=num;
-    string address=imagePath1.toStdString();
     Mat img1,img2;
     int time1,time2,nums;
     double psnr,bpp,cr;
+    Mat mat=QPixmapToMat(scaledPixmap);
 
-    fun(Epsilon,address,time1,time2,nums,psnr,bpp,cr,img1,img2);
+    fun(Epsilon,mat,time1,time2,nums,psnr,bpp,cr,img1,img2);
 
     m1=MatToQPixmap(img1);
     m2=MatToQPixmap(img2);
@@ -122,7 +122,7 @@ void Widget::on_run_pushButton_clicked()
 void Widget::on_loadButton_clicked()
 {
     //定义QString变量imagePath1来接收图片的地址，这个地址是由用户自己上传的。请注意imagePath1是在头文件中已经声明的。
-    imagePath1 = QFileDialog::getOpenFileName(this, "选择图片", "", "图片文件 (*.jpg *.jpeg *.png)");
+    imagePath1 = QFileDialog::getOpenFileName(this, "选择图片", "", "图片文件 (*.jpg *.jpeg *.png *.bmp)");
     if (!imagePath1.isEmpty()) {
         QPixmap originalPixmap(imagePath1);
         ui->Image_display_label_1->setPixmap(originalPixmap);
@@ -130,19 +130,20 @@ void Widget::on_loadButton_clicked()
         int targetSize=300;
         scaledPixmap=originalPixmap.scaled(targetSize,targetSize,Qt::KeepAspectRatio);
     }
+    ui->Image_display_label_2->setPixmap(scaledPixmap);
 }
 
 
 void Widget::on_saveButton_1_clicked()
 {
-    QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.png *.jpg)"));
+    QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.jpg *.jpeg *.png *.bmp)"));
     m1.save(dir);
 }
 
 
 void Widget::on_saveButton_2_clicked()
 {
-    QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.png *.jpg)"));
+    QString dir=QFileDialog::getSaveFileName(this,tr("保存图片"),"",tr("Images (*.jpg *.jpeg *.png *.bmp)"));
     m2.save(dir);
 }
 

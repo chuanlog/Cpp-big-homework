@@ -5,9 +5,9 @@
 #include<Header_Diagonal_Priority.h>
 
 //这是Diagonal_Priority算法的函数，传入参数为，epsilon值、原图地址值以及编解码时间，块数，PSNR，BPP,CR值的引用
-void fun(int epsilon, string address, int& time1, int& time2, int& num, double& psnr, double& bpp, double& cr, Mat& img1, Mat& img2)
+void fun(int epsilon, Mat mat, int& time1, int& time2, int& num, double& psnr, double& bpp, double& cr, Mat& img1, Mat& img2)
 {
-    Mat img = imread(address);
+    Mat img = mat;
     if (!img.empty()) {
         /*一，分割同类块及编码*/
         int M = img.rows;
@@ -85,8 +85,28 @@ QPixmap MatToQPixmap(const cv::Mat& mat)
 }
 
 
-
 //以下函数用于将QPixmap转为Mat
+Mat QPixmapToMat(QPixmap qpixmap)
+{
+    QImage qimage=qpixmap.toImage();
+    cv::Mat mat;
+    switch(qimage.format())
+    {
+    case QImage::Format_ARGB32:
+    case QImage::Format_RGB32:
+    case QImage::Format_ARGB32_Premultiplied:
+        mat = cv::Mat(qimage.height(), qimage.width(), CV_8UC4, (void*)qimage.constBits(), qimage.bytesPerLine());
+        break;
+    case QImage::Format_RGB888:
+        mat = cv::Mat(qimage.height(), qimage.width(), CV_8UC3, (void*)qimage.constBits(), qimage.bytesPerLine());
+        cv::cvtColor(mat, mat, CV_BGR2RGB);
+        break;
+    case QImage::Format_Indexed8:
+        mat = cv::Mat(qimage.height(), qimage.width(), CV_8UC1, (void*)qimage.constBits(), qimage.bytesPerLine());
+        break;
+    }
+    return mat;
+}
 
 
 
