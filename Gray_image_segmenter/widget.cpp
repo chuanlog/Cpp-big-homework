@@ -130,7 +130,6 @@ void Widget::on_loadButton_clicked()
         int targetSize=300;
         scaledPixmap=originalPixmap.scaled(targetSize,targetSize,Qt::KeepAspectRatio);
     }
-    ui->Image_display_label_2->setPixmap(scaledPixmap);
 }
 
 
@@ -164,5 +163,11 @@ void Widget::on_clearButton_clicked()
     m2 = QPixmap();
     scaledPixmap=QPixmap();
     imagePath1.clear();
+}
+
+
+void Widget::on_comboBox_activated(int index)
+{
+    op=index;
 }
 

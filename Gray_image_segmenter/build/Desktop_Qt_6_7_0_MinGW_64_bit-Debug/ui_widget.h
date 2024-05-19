@@ -219,6 +219,9 @@ public:
         horizontalLayout_2->addWidget(label);
 
         comboBox = new QComboBox(layoutWidget);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
         comboBox->setObjectName("comboBox");
         comboBox->setMinimumSize(QSize(101, 31));
         comboBox->setMaximumSize(QSize(100, 30));
@@ -280,6 +283,10 @@ public:
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:700;\">\350\276\223\345\205\245epsilon\345\200\274\357\274\232</span></p></body></html>", nullptr));
         label->setText(QCoreApplication::translate("Widget", "<html><head/><body><p><span style=\" font-weight:700;\">\351\200\211\346\213\251\344\275\240\347\232\204\347\256\227\346\263\225\357\274\232</span></p></body></html>", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("Widget", "\345\257\271\350\247\222\347\272\277\345\210\206\345\211\262", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("Widget", "\346\260\264\345\271\263\345\210\206\345\211\262", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("Widget", "IBR", nullptr));
+
         clearButton->setText(QCoreApplication::translate("Widget", "\346\270\205\347\251\272", nullptr));
         label_3->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\216\237\345\233\276</p></body></html>", nullptr));
         label_4->setText(QCoreApplication::translate("Widget", "<html><head/><body><p align=\"center\">\345\210\206\345\211\262\345\233\276</p></body></html>", nullptr));

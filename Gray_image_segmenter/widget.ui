@@ -468,6 +468,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <height>30</height>
          </size>
         </property>
+        <item>
+         <property name="text">
+          <string>对角线分割</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>水平分割</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>IBR</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

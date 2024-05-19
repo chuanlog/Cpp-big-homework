@@ -32,6 +32,8 @@ private slots:
 
     void on_clearButton_clicked();
 
+    void on_comboBox_activated(int index);
+
 private:
     Ui::Widget *ui;
     int num = 0;//用于存储epsilon值输入框中的值
@@ -39,5 +41,6 @@ private:
     QPixmap scaledPixmap; //经过裁切成外部label的正方形尺寸（300×300）后，送入后端代码算法处理成灰度图、分割图的处理图
     QPixmap m1;//灰度图
     QPixmap m2;//分割图
+    int op;
 };
 #endif // WIDGET_H
