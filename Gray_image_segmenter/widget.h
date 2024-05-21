@@ -39,7 +39,7 @@ private:
     int num = 0;//用于存储epsilon值输入框中的值
     QString imagePath1; //用户选择上传他们图片后的地址
     QPixmap scaledPixmap; //经过裁切成外部label的正方形尺寸（300×300）后，送入后端代码算法处理成灰度图、分割图的处理图
-    QPixmap m1;//灰度图
+    QPixmap m1;//压缩图
     QPixmap m2;//分割图
     int op;
 };

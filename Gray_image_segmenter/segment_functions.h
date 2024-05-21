@@ -116,7 +116,7 @@ QPixmap makeSquarePixmap(const QPixmap &srcPixmap) {
     int height = srcPixmap.height();
 
     // 计算正方形的边长，取宽和高的较大值
-    int side = qMax(width, height);
+    int side = max(width, height);
 
     // 将原始 QPixmap 缩放到正方形大小，保持长宽比
     QPixmap scaledPixmap = srcPixmap.scaled(side, side, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);

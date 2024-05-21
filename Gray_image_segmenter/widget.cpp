@@ -78,9 +78,9 @@ void Widget::on_run_pushButton_clicked()
     ui->state_showing_label->setFont(f);
     ui->state_showing_label->setText("运行状态：算法执行成功!");
 
-    ui->Image_display_label_2->setPixmap(m1);
+    ui->Image_display_label_2->setPixmap(m1);//压缩图
     ui->Image_display_label_2->setScaledContents(true);
-    ui->Image_display_label_3->setPixmap(m2);
+    ui->Image_display_label_3->setPixmap(m2);//分割图
     ui->Image_display_label_3->setScaledContents(true);
 
     QString tem;
@@ -119,7 +119,7 @@ void Widget::on_run_pushButton_clicked()
     //把为显示而压缩为正方形的图片恢复为原来的尺寸
     QPixmap original(imagePath1);
     m1= OriginalSize(m1,original.width(),original.height());
-    m2= OriginalSize(m1,original.width(),original.height());
+    m2= OriginalSize(m2,original.width(),original.height());
 }
 
 
