@@ -41,6 +41,6 @@ private:
     QPixmap scaledPixmap; //经过裁切成外部label的正方形尺寸（300×300）后，送入后端代码算法处理成灰度图、分割图的处理图
     QPixmap m1;//压缩图
     QPixmap m2;//分割图
-    int op;
+    int op=0;
 };
 #endif // WIDGET_H

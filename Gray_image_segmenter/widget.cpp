@@ -70,7 +70,7 @@ void Widget::on_run_pushButton_clicked()
     double psnr,bpp,cr;
     Mat mat=QPixmapToMat(scaledPixmap);
 
-    fun(Epsilon,mat,time1,time2,nums,psnr,bpp,cr,img1,img2);
+    fun(Epsilon,mat,time1,time2,nums,psnr,bpp,cr,img1,img2,op);
 
     m1=MatToQPixmap(img1);
     m2=MatToQPixmap(img2);
@@ -120,6 +120,9 @@ void Widget::on_run_pushButton_clicked()
     QPixmap original(imagePath1);
     m1= OriginalSize(m1,original.width(),original.height());
     m2= OriginalSize(m2,original.width(),original.height());
+
+    //以下是debug语句书写处
+
 }
 
 

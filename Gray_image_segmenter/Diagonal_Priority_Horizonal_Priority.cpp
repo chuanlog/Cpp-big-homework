@@ -1,4 +1,4 @@
-#include "Header_Diagonal_Priority.h"
+#include "Header_Diagonal_Priority_Horizonal_Priority.h"
 
 //使用改良isSameBlock阴影法判断是否同类块
 bool isSameBlock(Mat f,Mat mark, Point lt, Point rb,int xgm)
@@ -329,8 +329,8 @@ void Decode(Mat &R, int height, int width, const vector<char> &Q)
 
 }
 
-//寻找最大的矩形子模式
-Point REHelper(Mat f, Mat mark, int M, int N, Point start,int xgm) {
+//用Diagonal priority寻找最大的矩形子模式
+Point REHelper_Diagonal_priority(Mat f, Mat mark, int M, int N, Point start,int xgm) {
     Point end = start;
     Point end1, end2;
     while (end.x < M&&end.y < N && (mark.at<uchar>(end) == 0) && (mark.at<uchar>(start) == 0) ){
@@ -413,8 +413,40 @@ Point REHelper(Mat f, Mat mark, int M, int N, Point start,int xgm) {
     if ((end.x-start.x+1)*(end.y-start.y+1)<(end_third.x-start.x+1)*(end_third.y-start.y+1))end = end_third;*/
 }
 
-//灰度图f编码
-void RNAMCEncoding(Mat f,Mat &R,Mat &markMatrix,int M,int N,vector<Color> &p,vector<char> &q,int xgm) {
+//用Horizonal priority策略寻找最大的矩型子模式
+Point REHelper_Horizonal_priority(Mat f, Mat mark, int M, int N, Point start,int xgm) {
+    Point end2,end1 = end2 = start;
+
+    while (end1.x < M && (mark.at<uchar>(end1) != 1)) {
+        if (!isSameBlock(f, mark,start, end1, xgm)) break;
+        end1.x++;
+    }
+    end1.x--;
+    while (end1.y < N && (mark.at<uchar>(end1) != 1)) {
+        if (!isSameBlock(f,mark, start, end1, xgm)) break;
+        end1.y++;
+    }
+    end1.y--;
+
+    while (end2.y < N && (mark.at<uchar>(end2) != 1)) {
+        if (!isSameBlock(f, mark,start, end2, xgm)) break;
+        end2.y++;
+    }
+    end2.y--;
+    while (end2.x < M && (mark.at<uchar>(end2) != 1)) {
+        if (!isSameBlock(f, mark,start, end2, xgm)) break;
+        end2.x++;
+    }
+    end2.x--;
+
+
+    if ((end2.x - start.x + 1)*(end2.y - start.y + 1) > (end1.x - start.x + 1)*(end1.y - start.y + 1))return end2;
+    else return end1;
+}
+
+
+//Diagonal_Priority策略给灰度图f编码
+void RNAMCEncoding_Diagonal_Priority(Mat f,Mat &R,Mat &markMatrix,int M,int N,vector<Color> &p,vector<char> &q,int xgm) {
     Point start, end;
     for (int i = 0; i < M; i++)
         for (int j = 0; j < N; j++)
@@ -422,7 +454,7 @@ void RNAMCEncoding(Mat f,Mat &R,Mat &markMatrix,int M,int N,vector<Color> &p,vec
             if (markMatrix.at<uchar>(i, j) == 0)
             {
                 start = Point(j,i);
-                end = REHelper(f, markMatrix, M,N,start,xgm);
+                end = REHelper_Diagonal_priority(f, markMatrix, M,N,start,xgm);
                 Color p1;
                 p1.setLt(start);
                 p1.setRb(end);
@@ -474,6 +506,69 @@ void RNAMCEncoding(Mat f,Mat &R,Mat &markMatrix,int M,int N,vector<Color> &p,vec
         cout << endl;
     }*/
 }
+
+//用Horizonal_Priority策略给灰度图f编码
+void RNAMCEncoding_Horizonal_Priority(Mat f,Mat &R,Mat &markMatrix,int M,int N,vector<Color> &p,vector<char> &q,int xgm) {
+    Point start, end;
+    for (int i = 0; i < M; i++)
+        for (int j = 0; j < N; j++)
+        {
+            if (markMatrix.at<uchar>(i, j) == 0)
+            {
+                start = Point(j,i);
+                end = REHelper_Horizonal_priority(f, markMatrix, M,N,start,xgm);
+                Color p1;
+                p1.setLt(start);
+                p1.setRb(end);
+                uchar g1 = f.at<uchar>(start);
+                uchar g2 = f.at<uchar>(Point(end.x, start.y));
+                uchar g3 = f.at<uchar>(Point(start.x, end.y));
+                uchar g4 = f.at<uchar>(end);
+                if (start.x < end.x&&start.y < end.y)
+                {
+                    p1.setGrey(Scalar(g1, g2, g3, g4));
+                    R.at<uchar>(start) = 1;
+                    R.at<uchar>(end) = 2;
+                }
+                //宽为1的矩形
+                if (start.x != end.x&&start.y == end.y)
+                {
+                    p1.setGrey(Scalar(g1, 0, 0, g4));
+                    R.at<uchar>(start) = 1;
+                    R.at<uchar>(end) = 2;
+                }
+                //长为1的矩形
+                if (start.x == end.x&&start.y != end.y)
+                {
+                    p1.setGrey(Scalar(g1, 0, 0, g4));
+                    R.at<uchar>(start) = 1;
+                    R.at<uchar>(end) = 2;
+                }
+                //孤立点矩形
+                if (start.x == end.x&&start.y == end.y)
+                {
+                    p1.setGrey(Scalar(g1, 0, 0, 0));
+                    R.at<uchar>(start) = 3;
+                }
+                p.push_back(p1);
+                mark(markMatrix,start,end);
+                /*for (int i = 0; i < M; i++) {
+                    for (int j = 0; j < N; j++) {
+                        cout << (int)markmatrix.at<uchar>(i, j);
+                    }
+                    cout << endl;
+                }
+                cout << endl;*/
+            }
+        }
+    /*for (int i = 0; i < M; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << (int)R.at<uchar>(i, j);
+        }
+        cout << endl;
+    }*/
+}
+
 
 //恢复矩形子模式的值
 void RDHelper(Mat& R, Color p1) {

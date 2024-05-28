@@ -2,11 +2,11 @@
 #define SEGMENT_FUNCTIONS_H
 #include<QImage>
 #include<QPixmap>
-#include<Header_Diagonal_Priority.h>
+#include<Header_Diagonal_Priority_Horizonal_Priority.h>
 #include<QPainter>
 
-//这是Diagonal_Priority算法的函数，传入参数为，epsilon值、原图地址值以及编解码时间，块数，PSNR，BPP,CR值的引用
-void fun(int epsilon, Mat mat, int& time1, int& time2, int& num, double& psnr, double& bpp, double& cr, Mat& img1, Mat& img2)
+//这是进行分割算法的函数，传入参数为，epsilon值、原图地址值以及编解码时间，块数，PSNR，BPP,CR值的引用以及使用的策略ways
+void fun(int epsilon, Mat mat, int& time1, int& time2, int& num, double& psnr, double& bpp, double& cr, Mat& img1, Mat& img2,int ways)
 {
     Mat img = mat;
     if (!img.empty()) {
@@ -25,7 +25,14 @@ void fun(int epsilon, Mat mat, int& time1, int& time2, int& num, double& psnr, d
         MyTimer mt;
         mt.Start();
         /*分块*/
-        RNAMCEncoding(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
+        if(ways==0)
+        {
+           RNAMCEncoding_Diagonal_Priority(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
+        }//用对角线优先策略
+        else if(ways==1)
+        {
+            RNAMCEncoding_Horizonal_Priority(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
+        }//用水平优先策略
 
         /*矩阵编码*/
         EnCode(R, M, N, coordinateList);
@@ -61,6 +68,8 @@ void fun(int epsilon, Mat mat, int& time1, int& time2, int& num, double& psnr, d
         T.release();
     }
 }
+
+
 //以下两个函数用于将Mat转化为QPixmap
 //将Mat转化为QImage
 QImage MatToQImage(const cv::Mat& mat)
