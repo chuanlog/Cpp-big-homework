@@ -1,7 +1,7 @@
 #ifndef IMAGEPROCESSOR_H
 #define IMAGEPROCESSOR_H
 
-#include<imageload.h>
+#include"imageload.h"
 #include<QMessagebox.h>
 /*此类由ImageLoad类派生*/
 class ImageProcessor: public ImageLoad//公有继承ImageLoad用于处理原始图的Mat,使其成为算法的输入

@@ -1,10 +1,10 @@
 #ifndef ALGO_H
 #define ALGO_H
-#include<imageprocessor.h>
+#include"imageprocessor.h"
 #include<opencv2/opencv.hpp>
 #include <opencv2\imgproc\types_c.h>
-#include<Color.h>
-#include<MyTimer.h>
+#include"Color.h"
+#include"MyTimer.h"
 /*此类由ImageProcessor派生，用于实现算法*/
 class Algo:public ImageProcessor
 {

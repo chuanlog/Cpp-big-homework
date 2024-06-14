@@ -13,7 +13,7 @@ void ImageProcessor::beSquare()
     int height = img_gray.rows;
 
     // 计算正方形的边长，取宽和高的较大值
-    int side = std::max(width, height);
+    int side = max(width, height);
     M=side;
     N=side;
     // 缩放原图到正方形尺寸，忽略长宽比

@@ -12,6 +12,16 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->valueInput_horizontalSlider,SIGNAL(sliderReleased()),this,SLOT(on_run_pushButton_clicked()));
+
+    //ui美化
+    ui->Image_display_label_1->setStyleSheet("border:2px solid rgb(0,0,0);;border-radius:10px;padding:2px 4px;");
+    ui->Image_display_label_2->setStyleSheet("border:2px solid rgb(0,0,0);;border-radius:10px;padding:2px 4px;");
+    ui->Image_display_label_3->setStyleSheet("border:2px solid rgb(0,0,0);;border-radius:10px;padding:2px 4px;");
+    ui->state_showing_label->setStyleSheet("border:1px solid rgb(0,0,0);;border-radius:3px;padding:2px 4px;");
+    // 设置按钮样式及悬浮、按下时的状态
+    ui->run_pushButton->setStyleSheet("QPushButton{color: white;background-color: rgb(25, 117, 197);border:2px groove gray;border-radius:5px;padding:2px 4px;border-style: outset;}"
+        "QPushButton:hover{background-color:rgb(41, 116, 195); color: black;}"
+        "QPushButton:pressed{background-color:rgb(50, 150, 200);border-style: inset;}");
 }
 
 Widget::~Widget()

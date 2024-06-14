@@ -33,6 +33,9 @@
   <property name="windowTitle">
    <string>灰度图像分割器</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(243, 243, 243);</string>
+  </property>
   <widget class="QWidget" name="layoutWidget1">
    <property name="geometry">
     <rect>
@@ -46,6 +49,19 @@
     <property name="spacing">
      <number>3</number>
     </property>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item>
      <widget class="QLabel" name="Image_display_label_1">
       <property name="minimumSize">
@@ -376,17 +392,30 @@
   <widget class="QPushButton" name="run_pushButton">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>520</y>
-     <width>201</width>
+     <x>520</x>
+     <y>530</y>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>14</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Microsoft YaHei UI&quot;;</string>
+    <string notr="true">font: 14pt &quot;Microsoft YaHei UI&quot;;
+</string>
    </property>
    <property name="text">
-    <string>执      行      算      法</string>
+    <string>执 行 算 法</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -523,6 +552,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;原图&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -535,6 +570,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <width>51</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;压缩图&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -549,6 +590,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;分割图&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
@@ -556,9 +603,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <widget class="QLabel" name="state_showing_label">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>450</y>
-     <width>351</width>
+     <x>440</x>
+     <y>470</y>
+     <width>311</width>
      <height>31</height>
     </rect>
    </property>
@@ -571,7 +618,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string notr="true">border:1px solid rgb(0,0,0);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;运行状态：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;运行状态：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>1040</x>
+     <y>10</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;参数&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
