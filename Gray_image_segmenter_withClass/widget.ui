@@ -80,7 +80,7 @@
        <string notr="true">border:1px solid rgb(0,0,0);</string>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -102,7 +102,7 @@
        <string notr="true">border:1px solid rgb(0,0,0);</string>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -124,7 +124,7 @@
        <string notr="true">border:1px solid rgb(0,0,0);</string>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -499,17 +499,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </property>
         <item>
          <property name="text">
-          <string>对角线分割</string>
+          <string>对角线优先</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>水平分割</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>IBR</string>
+          <string>水平优先</string>
          </property>
         </item>
        </widget>
